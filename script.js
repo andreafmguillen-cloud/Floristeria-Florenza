@@ -105,4 +105,178 @@ gsap.to('.img-2', {
     }
 });
 
+// MARAUDER'S MAP - ELEGANT ORGANIC GROWING VINES
+const canvas = document.getElementById('marauder-vines');
+const ctx = canvas.getContext('2d');
 
+function initCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+}
+window.addEventListener('resize', initCanvas);
+initCanvas();
+
+const colorGold = '#d8b488';
+const colorLeaf = '#8ca393'; 
+const colorPink = '#faece8';
+
+let vines = [];
+let flowers = [];
+
+class Vine {
+    constructor(x, y, angle, width, life) {
+        this.x = x;
+        this.y = y;
+        this.angle = angle;
+        this.width = width;
+        this.life = life;
+        this.maxLife = life;
+        this.age = 0;
+        this.speed = 1.0 + Math.random() * 0.8;
+        this.curve = (Math.random() - 0.5) * 0.08;
+    }
+
+    update() {
+        this.age++;
+        if (this.age > this.life) return false;
+
+        this.angle += this.curve + Math.sin(this.age * 0.05) * 0.02;
+        
+        const nextX = this.x + Math.cos(this.angle) * this.speed;
+        const nextY = this.y + Math.sin(this.angle) * this.speed;
+
+        ctx.beginPath();
+        ctx.moveTo(this.x, this.y);
+        ctx.lineTo(nextX, nextY);
+        const currentWidth = this.width * (1 - this.age / this.life);
+        ctx.lineWidth = currentWidth;
+        ctx.strokeStyle = colorGold;
+        ctx.globalAlpha = 1;
+        ctx.lineCap = 'round';
+        ctx.stroke();
+
+        this.x = nextX;
+        this.y = nextY;
+
+        // Branching
+        if (Math.random() < 0.015 && currentWidth > 1.5) {
+            vines.push(new Vine(this.x, this.y, this.angle + (Math.random() > 0.5 ? 0.6 : -0.6), currentWidth * 0.7, this.life - this.age));
+        }
+
+        // Leaves
+        if (Math.random() < 0.03 && currentWidth > 0.5) {
+            flowers.push(new Leaf(this.x, this.y, this.angle + (Math.random() > 0.5 ? 0.8 : -0.8), currentWidth * 4));
+        }
+
+        // Blossoms
+        if (Math.random() < 0.005 && this.age > 40) {
+            flowers.push(new Flower(this.x, this.y, currentWidth * 5));
+        }
+
+        return true;
+    }
+}
+
+class Leaf {
+    constructor(x, y, angle, size) {
+        this.x = x;
+        this.y = y;
+        this.angle = angle;
+        this.targetSize = size;
+        this.size = 0;
+    }
+    update() {
+        if (this.size < this.targetSize) {
+            this.size += 0.2;
+            ctx.save();
+            ctx.translate(this.x, this.y);
+            ctx.rotate(this.angle);
+            ctx.beginPath();
+            ctx.moveTo(0, 0);
+            ctx.quadraticCurveTo(this.size / 2, -this.size / 2, this.size, 0);
+            ctx.quadraticCurveTo(this.size / 2, this.size / 2, 0, 0);
+            ctx.fillStyle = colorLeaf;
+            ctx.globalAlpha = 0.6;
+            ctx.fill();
+            ctx.restore();
+            return true;
+        }
+        return false;
+    }
+}
+
+class Flower {
+    constructor(x, y, size) {
+        this.x = x;
+        this.y = y;
+        this.targetRadius = size;
+        this.radius = 0;
+        this.rotation = Math.random() * Math.PI;
+    }
+    update() {
+        if (this.radius < this.targetRadius) {
+            this.radius += 0.15;
+            ctx.save();
+            ctx.translate(this.x, this.y);
+            ctx.rotate(this.rotation + this.radius * 0.1);
+            ctx.fillStyle = colorPink;
+            ctx.globalAlpha = 0.8;
+            for (let i = 0; i < 5; i++) {
+                ctx.beginPath();
+                ctx.ellipse(this.radius, 0, this.radius, this.radius/2, 0, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.rotate((Math.PI * 2) / 5);
+            }
+            ctx.restore();
+            return true;
+        }
+        return false;
+    }
+}
+
+function startGrowth() {
+    vines = [];
+    flowers = [];
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+    // Start vines from corners growing inward
+    vines.push(new Vine(0, 0, Math.PI/4, 6, 400));
+    vines.push(new Vine(canvas.width, 0, Math.PI*3/4, 6, 400));
+    vines.push(new Vine(0, canvas.height, -Math.PI/4, 6, 400));
+    vines.push(new Vine(canvas.width, canvas.height, -Math.PI*3/4, 6, 400));
+    
+    // Sides
+    if(window.innerWidth > 800) {
+        vines.push(new Vine(0, canvas.height/2, 0, 4, 300));
+        vines.push(new Vine(canvas.width, canvas.height/2, Math.PI, 4, 300));
+    }
+    
+    animateGrowth();
+}
+
+function animateGrowth() {
+    let growing = false;
+    
+    for (let i = vines.length - 1; i >= 0; i--) {
+        if (vines[i].update()) {
+            growing = true;
+        } else {
+            vines.splice(i, 1);
+        }
+    }
+    
+    for (let i = flowers.length - 1; i >= 0; i--) {
+        if (flowers[i].update()) {
+            growing = true;
+        } else {
+            flowers.splice(i, 1);
+        }
+    }
+    
+    if (growing) {
+        requestAnimationFrame(animateGrowth);
+    }
+}
+
+// Start growth animation immediately
+setTimeout(startGrowth, 300);

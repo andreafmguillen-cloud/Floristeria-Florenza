@@ -26,22 +26,16 @@ body {
     position: relative;
 }
 
-/* Floral Animated Background */
-#floral-bg {
+/* Animated Vines Canvas */
+#marauder-vines {
     position: fixed;
-    top: -5%;
-    left: -5%;
-    width: 110vw;
-    height: 110vh;
-    z-index: -1;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -2;
     pointer-events: none;
-    background: linear-gradient(rgba(22, 26, 24, 0.65), rgba(22, 26, 24, 0.85)), url('bg.png') center/cover;
-    animation: floralBloom 25s ease-in-out infinite alternate;
-}
-
-@keyframes floralBloom {
-    0% { transform: scale(1); filter: brightness(1) contrast(1); }
-    100% { transform: scale(1.08); filter: brightness(1.2) contrast(1.1); }
+    opacity: 0.8;
 }
 
 /* Typography */
