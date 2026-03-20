@@ -116,9 +116,9 @@ function initCanvas() {
 window.addEventListener('resize', initCanvas);
 initCanvas();
 
-const colorGold = '#a68b5b'; // Muted gold matching the logo
-const colorLeaf = '#558262'; // Darker sage for leaf contrast
-const colorPink = '#ffffff'; // White for flowers // White for flowers
+const colorGold = '#708871'; // Sage green from the new logo
+const colorLeaf = '#9db09e'; // Soft green for leaves
+const colorPink = '#fdf0e9'; // Soft peach from logo background for flowers
 
 let vines = [];
 let flowers = [];

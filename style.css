@@ -1,10 +1,10 @@
 :root {
-    --bg-color: #d8e6d9; /* Minty pastel green background */
-    --primary-color: #a68b5b; /* Muted gold matching the logo */
-    --secondary-color: #c2d1c3; /* Subtle mint for sections */
-    --accent-color: #558262; /* Olive-sage for supporting elements */
-    --text-dark: #2a332a; /* Dark moss green for readability */
-    --text-light: #445945; /* Muted green-grey */
+    --bg-color: #e4ece3; /* Soft sage green background */
+    --primary-color: #708871; /* Sage green from the new logo */
+    --secondary-color: #d8e5d7; /* Slightly deeper green for contrast */
+    --accent-color: #fdf0e9; /* Soft peach from logo background for highlights */
+    --text-dark: #374438; /* Dark sage green for headings */
+    --text-light: #5d6d5e; /* Muted green for body text */
     --white: #ffffff;
     
     --font-heading: 'Lora', serif;
@@ -70,7 +70,7 @@ h1, h2, h3, h4 {
 }
 
 .navbar.scrolled {
-    background: rgba(216, 230, 217, 0.95);
+    background: rgba(228, 236, 227, 0.95);
     backdrop-filter: blur(10px);
     padding: 0.5rem 5%;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
@@ -434,7 +434,7 @@ h1, h2, h3, h4 {
 .cta-section {
     padding: 12rem 5%;
     text-align: center;
-    background: linear-gradient(rgba(194, 209, 195, 0.85), rgba(194, 209, 195, 0.85)), url('https://images.unsplash.com/photo-1559564022-386f6859e9a1?q=80&w=1600&auto=format&fit=crop') center/cover fixed;
+    background: linear-gradient(rgba(216, 229, 215, 0.85), rgba(216, 229, 215, 0.85)), url('https://images.unsplash.com/photo-1559564022-386f6859e9a1?q=80&w=1600&auto=format&fit=crop') center/cover fixed;
 }
 
 .cta-content h2 {
