@@ -479,7 +479,26 @@ footer {
     padding-top: 2rem;
     border-top: 1px solid rgba(216, 180, 136, 0.2); /* Use gold overlay */
     font-size: 0.9rem;
+}
+
+.footer-bottom p:first-child {
     opacity: 0.6;
+    margin-bottom: 0.5rem;
+}
+
+.powered-by {
+    font-size: 0.85rem;
+    color: #8b8b8b;
+}
+
+.powered-by a {
+    color: #4abeb3;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.powered-by a:hover {
+    color: #6edfd5;
 }
 
 @media (max-width: 1024px) {
