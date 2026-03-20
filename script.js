@@ -116,9 +116,9 @@ function initCanvas() {
 window.addEventListener('resize', initCanvas);
 initCanvas();
 
-const colorGold = '#c9d4b6'; // Soft olive-green for vines and flower core
-const colorLeaf = '#9abfa7'; // Main pastel green for leaves
-const colorPink = '#ffffff'; // White for flowers
+const colorGold = '#a68b5b'; // Muted gold matching the logo
+const colorLeaf = '#558262'; // Darker sage for leaf contrast
+const colorPink = '#ffffff'; // White for flowers // White for flowers
 
 let vines = [];
 let flowers = [];

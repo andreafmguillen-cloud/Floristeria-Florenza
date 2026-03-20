@@ -1,10 +1,10 @@
 :root {
     --bg-color: #d8e6d9; /* Minty pastel green background */
-    --primary-color: #558262; /* Darker sage/fern green for contrast (buttons, titles) */
-    --secondary-color: #c2d1c3; /* Slightly darker mint for alternating sections */
-    --accent-color: #a4c2a5; /* Soft mid-green */
-    --text-dark: #233324; /* Very dark green almost black for text */
-    --text-light: #445945; /* Medium grey-green */
+    --primary-color: #a68b5b; /* Muted gold matching the logo */
+    --secondary-color: #c2d1c3; /* Subtle mint for sections */
+    --accent-color: #558262; /* Olive-sage for supporting elements */
+    --text-dark: #2a332a; /* Dark moss green for readability */
+    --text-light: #445945; /* Muted green-grey */
     --white: #ffffff;
     
     --font-heading: 'Lora', serif;
