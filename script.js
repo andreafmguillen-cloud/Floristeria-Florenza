@@ -14,18 +14,31 @@ gsap.registerPlugin(ScrollTrigger);
 // Hero Animations
 const tl = gsap.timeline();
 
-// Split text animation for Hero simply using GSAP staggers
+// Split text animation for Hero by words then chars to prevent wrapping breaking mid-word
 const title = document.querySelector('.split-text');
-const chars = title.innerText.split('');
+const text = title.innerText;
 title.innerHTML = '';
-chars.forEach(char => {
-    const span = document.createElement('span');
-    span.innerText = char === ' ' ? '\u00A0' : char;
-    span.style.display = 'inline-block';
-    title.appendChild(span);
+text.split(' ').forEach((word, index, arr) => {
+    const wordSpan = document.createElement('span');
+    wordSpan.style.display = 'inline-block';
+    wordSpan.style.whiteSpace = 'nowrap';
+    word.split('').forEach(char => {
+        const charSpan = document.createElement('span');
+        charSpan.innerText = char;
+        charSpan.className = 'char';
+        charSpan.style.display = 'inline-block';
+        wordSpan.appendChild(charSpan);
+    });
+    title.appendChild(wordSpan);
+    if (index < arr.length - 1) {
+        const space = document.createElement('span');
+        space.innerText = '\u00A0';
+        space.style.display = 'inline-block';
+        title.appendChild(space);
+    }
 });
 
-tl.fromTo('.split-text span', 
+tl.fromTo('.split-text .char', 
     { y: 100, opacity: 0 },
     { y: 0, opacity: 1, duration: 1, stagger: 0.05, ease: 'power4.out', delay: 0.5 }
 )

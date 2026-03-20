@@ -1,9 +1,9 @@
 :root {
-    --bg-color: #fdfbf7;
-    --primary-color: #ae8b62; /* golden/brown from logo */
-    --secondary-color: #faece8; /* pale pink from logo background */
-    --text-dark: #3a3229;
-    --text-light: #6b5c50;
+    --bg-color: #161a18; /* Elegant deep green-black */
+    --primary-color: #d8b488; /* Gold/sand */
+    --secondary-color: #212824; /* Darker sage for sections */
+    --text-dark: #fdf9f4; /* Light text for dark background */
+    --text-light: #a9afa3; /* Muted light green-grey text */
     --white: #ffffff;
     
     --font-heading: 'Cinzel', serif;
@@ -69,7 +69,7 @@ h1, h2, h3, h4 {
 }
 
 .navbar.scrolled {
-    background: rgba(253, 251, 247, 0.95);
+    background: rgba(22, 26, 24, 0.95);
     backdrop-filter: blur(10px);
     padding: 1rem 5%;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
@@ -97,9 +97,9 @@ h1, h2, h3, h4 {
 
 .logo-img {
     height: 50px;
-    width: 50px;
-    object-fit: cover;
-    border-radius: 50%;
+    width: 60px;
+    object-fit: contain;
+    /* Removed border-radius since it's a transparent cutout */
 }
 
 .nav-links {
@@ -169,7 +169,7 @@ h1, h2, h3, h4 {
 
 .btn-primary {
     background-color: var(--primary-color);
-    color: var(--white);
+    color: #161a18; /* Keep text readable on the gold button */
 }
 
 .btn-primary:hover {
@@ -247,10 +247,9 @@ h1, h2, h3, h4 {
     filter: brightness(0.9);
 }
 
-/* Marquee */
 .marquee-container {
     background-color: var(--primary-color);
-    color: var(--white);
+    color: #161a18;
     padding: 1.5rem 0;
     overflow: hidden;
     white-space: nowrap;
@@ -374,7 +373,7 @@ h1, h2, h3, h4 {
 .cta-section {
     padding: 12rem 5%;
     text-align: center;
-    background: linear-gradient(rgba(253, 251, 247, 0.8), rgba(253, 251, 247, 0.8)), url('https://images.unsplash.com/photo-1559564022-386f6859e9a1?q=80&w=1600&auto=format&fit=crop') center/cover fixed;
+    background: linear-gradient(rgba(22, 26, 24, 0.85), rgba(22, 26, 24, 0.85)), url('https://images.unsplash.com/photo-1559564022-386f6859e9a1?q=80&w=1600&auto=format&fit=crop') center/cover fixed;
 }
 
 .cta-content h2 {
@@ -417,7 +416,9 @@ footer {
 
 .footer-brand .logo-img {
     filter: none;
-    border: 2px solid var(--primary-color);
+    height: 60px;
+    width: 70px;
+    object-fit: contain;
 }
 
 .footer-brand p {
