@@ -405,16 +405,16 @@ footer {
 
 .footer-content {
     display: flex;
-    justify-content: space-between;
-    max-width: 1400px;
+    justify-content: flex-start;
+    max-width: 1200px;
     margin: 0 auto 4rem;
-    gap: 4rem;
+    gap: 8rem;
     flex-wrap: wrap;
 }
 
 .footer-brand {
-    flex: 1;
-    min-width: 300px;
+    flex: none;
+    min-width: 250px;
 }
 
 .footer-brand .logo {
@@ -436,9 +436,9 @@ footer {
 
 .footer-info {
     display: flex;
-    gap: 3rem;
-    flex: none;
-    justify-content: flex-end;
+    gap: 4rem;
+    flex: 1;
+    justify-content: center;
     flex-wrap: wrap;
 }
 
