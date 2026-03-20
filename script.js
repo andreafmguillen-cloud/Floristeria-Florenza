@@ -38,19 +38,19 @@ text.split(' ').forEach((word, index, arr) => {
     }
 });
 
-tl.fromTo('.split-text .char', 
+tl.fromTo('.reveal-image',
+    { clipPath: 'polygon(0 100%, 100% 100%, 100% 100%, 0 100%)', opacity: 0 },
+    { clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)', opacity: 1, duration: 1.2, ease: 'power3.out', delay: 0.2 }
+)
+.fromTo('.split-text .char', 
     { y: 100, opacity: 0 },
-    { y: 0, opacity: 1, duration: 1, stagger: 0.05, ease: 'power4.out', delay: 0.5 }
+    { y: 0, opacity: 1, duration: 0.8, stagger: 0.03, ease: 'power4.out' },
+    '-=0.6' // Start slightly before logo finishes
 )
 .fromTo('.fade-up-text',
     { y: 30, opacity: 0 },
     { y: 0, opacity: 1, duration: 1, stagger: 0.2, ease: 'power3.out' },
-    '-=0.5'
-)
-.fromTo('.reveal-image',
-    { clipPath: 'polygon(0 100%, 100% 100%, 100% 100%, 0 100%)' },
-    { clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)', duration: 1.5, ease: 'power4.inOut' },
-    '-=1'
+    '-=0.4'
 );
 
 // Scroll Animations
