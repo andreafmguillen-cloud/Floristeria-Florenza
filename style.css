@@ -1,10 +1,10 @@
 :root {
-    --bg-color: #b8c9b9; /* Clearly green pastel background */
-    --primary-color: #3e503f; /* Dark forest green for contrast */
-    --secondary-color: #a8b8a9; /* Slightly darker green */
+    --bg-color: #c9d9ca; /* Slightly lighter pastel green background */
+    --primary-color: #3e503f; /* Dark forest green for branding */
+    --secondary-color: #bac9ba; /* Slightly darker green */
     --accent-color: #fdf0e9; 
-    --text-dark: #151d16; /* Very dark green for readability */
-    --text-light: #2d382e; /* Darker body text */
+    --text-dark: #151d16; /* Clean dark text */
+    --text-light: #2d382e; /* Dark body text */
     --white: #ffffff;
     
     --font-heading: 'Lora', serif;
