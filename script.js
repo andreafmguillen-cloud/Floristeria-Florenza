@@ -124,7 +124,7 @@ let vines = [];
 let flowers = [];
 
 class Vine {
-    constructor(x, y, angle, width, life) {
+    constructor(x, y, angle, width, life, isMain = true) {
         this.x = x;
         this.y = y;
         this.angle = angle;
@@ -132,18 +132,38 @@ class Vine {
         this.life = life;
         this.maxLife = life;
         this.age = 0;
-        this.speed = 1.0 + Math.random() * 0.8;
-        this.curve = (Math.random() - 0.5) * 0.08;
+        this.speed = 1.0;
+        this.isMain = isMain;
+        
+        // Gentle undulating wave for organic but structured growth
+        this.waveOffset = Math.random() * Math.PI * 2;
+        this.waveSpeed = 0.02 + Math.random() * 0.01;
+        this.waveAmplitude = 0.03;
     }
 
     update() {
         this.age++;
         if (this.age > this.life) return false;
 
-        this.angle += this.curve + Math.sin(this.age * 0.05) * 0.02;
+        // Elegant undulating curve instead of random noise
+        this.angle += Math.sin(this.age * this.waveSpeed + this.waveOffset) * this.waveAmplitude;
         
         const nextX = this.x + Math.cos(this.angle) * this.speed;
         const nextY = this.y + Math.sin(this.angle) * this.speed;
+
+        // Distance to center to prevent interfering with text
+        const dx = nextX - canvas.width / 2;
+        const dy = nextY - canvas.height / 2;
+        const distFromCenter = Math.sqrt(dx*dx + dy*dy);
+        const maxDist = Math.max(canvas.width, canvas.height) / 2;
+        
+        // Fade out as it approaches the center
+        let alpha = 1;
+        const safeZone = window.innerWidth < 768 ? maxDist * 0.7 : maxDist * 0.5;
+        if (distFromCenter < safeZone) {
+            alpha = Math.max(0, (distFromCenter - safeZone * 0.5) / (safeZone * 0.5));
+            if (alpha <= 0.01) return false; // Stop growing when completely faded
+        }
 
         ctx.beginPath();
         ctx.moveTo(this.x, this.y);
@@ -151,26 +171,31 @@ class Vine {
         const currentWidth = this.width * (1 - this.age / this.life);
         ctx.lineWidth = currentWidth;
         ctx.strokeStyle = colorGold;
-        ctx.globalAlpha = 1;
+        ctx.globalAlpha = alpha;
         ctx.lineCap = 'round';
         ctx.stroke();
 
         this.x = nextX;
         this.y = nextY;
 
-        // Branching
-        if (Math.random() < 0.015 && currentWidth > 1.5) {
-            vines.push(new Vine(this.x, this.y, this.angle + (Math.random() > 0.5 ? 0.6 : -0.6), currentWidth * 0.7, this.life - this.age));
+        // Structured Branching (More organized)
+        // Main vines branch out regularly, sub-vines branch less
+        if (this.isMain && this.age % 40 === 0 && currentWidth > 1.5) {
+            // Alternate left and right branching
+            const branchSide = (this.age / 40) % 2 === 0 ? 1 : -1;
+            const branchAngle = this.angle + branchSide * 0.6;
+            vines.push(new Vine(this.x, this.y, branchAngle, currentWidth * 0.7, this.life - this.age, false));
         }
 
-        // Leaves
-        if (Math.random() < 0.03 && currentWidth > 0.5) {
-            flowers.push(new Leaf(this.x, this.y, this.angle + (Math.random() > 0.5 ? 0.8 : -0.8), currentWidth * 4));
+        // Leaves cleanly placed on branches
+        if (this.age % 25 === 0 && currentWidth > 0.5) {
+            const leafSide = (this.age / 25) % 2 === 0 ? 1 : -1;
+            flowers.push(new Leaf(this.x, this.y, this.angle + leafSide * 0.8, currentWidth * 3, alpha));
         }
 
-        // Blossoms
-        if (Math.random() < 0.005 && this.age > 40) {
-            flowers.push(new Flower(this.x, this.y, currentWidth * 5));
+        // Blossoms at the ends of sub-branches
+        if (!this.isMain && this.age === this.life - 10 && alpha > 0.2) {
+            flowers.push(new Flower(this.x, this.y, currentWidth * 8, alpha));
         }
 
         return true;
@@ -178,12 +203,13 @@ class Vine {
 }
 
 class Leaf {
-    constructor(x, y, angle, size) {
+    constructor(x, y, angle, size, maxAlpha) {
         this.x = x;
         this.y = y;
         this.angle = angle;
         this.targetSize = size;
         this.size = 0;
+        this.maxAlpha = maxAlpha * 0.6;
     }
     update() {
         if (this.size < this.targetSize) {
@@ -196,7 +222,7 @@ class Leaf {
             ctx.quadraticCurveTo(this.size / 2, -this.size / 2, this.size, 0);
             ctx.quadraticCurveTo(this.size / 2, this.size / 2, 0, 0);
             ctx.fillStyle = colorLeaf;
-            ctx.globalAlpha = 0.6;
+            ctx.globalAlpha = this.maxAlpha;
             ctx.fill();
             ctx.restore();
             return true;
@@ -206,12 +232,13 @@ class Leaf {
 }
 
 class Flower {
-    constructor(x, y, size) {
+    constructor(x, y, size, maxAlpha) {
         this.x = x;
         this.y = y;
         this.targetRadius = size;
         this.radius = 0;
         this.rotation = Math.random() * Math.PI;
+        this.maxAlpha = maxAlpha * 0.8;
     }
     update() {
         if (this.radius < this.targetRadius) {
@@ -220,13 +247,21 @@ class Flower {
             ctx.translate(this.x, this.y);
             ctx.rotate(this.rotation + this.radius * 0.1);
             ctx.fillStyle = colorPink;
-            ctx.globalAlpha = 0.8;
+            ctx.globalAlpha = this.maxAlpha;
             for (let i = 0; i < 5; i++) {
                 ctx.beginPath();
                 ctx.ellipse(this.radius, 0, this.radius, this.radius/2, 0, 0, Math.PI * 2);
                 ctx.fill();
                 ctx.rotate((Math.PI * 2) / 5);
             }
+            
+            // Inner golden core
+            ctx.beginPath();
+            ctx.arc(0, 0, this.radius * 0.3, 0, Math.PI * 2);
+            ctx.fillStyle = colorGold;
+            ctx.globalAlpha = this.maxAlpha;
+            ctx.fill();
+            
             ctx.restore();
             return true;
         }
