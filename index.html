@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Floristería Florenza | Honduras</title>
+    <meta name="description" content="Floristería Florenza en Honduras. Arreglos florales de lujo, elegancia y exclusividad para cada ocasión especial.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <!-- GSAP for animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <!-- Three.js for 3D background -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
+    <!-- 3D Canvas Background -->
+    <canvas id="webgl-canvas"></canvas>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <svg viewBox="0 0 100 100" class="logo-svg" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M50,15 C45,25 35,35 25,35 C35,45 40,55 50,65 C60,55 65,45 75,35 C65,35 55,25 50,15 Z" fill="none" stroke="currentColor" stroke-width="2"/>
+                    <path d="M50,15 C45,15 40,20 40,30 C40,40 50,45 50,45 C50,45 60,40 60,30 C60,20 55,15 50,15 Z" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                    <path d="M50,45 C40,40 30,50 35,60 C40,70 50,65 50,65 C50,65 60,70 65,60 C70,50 60,40 50,45 Z" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                    <path d="M50,65 L50,90" fill="none" stroke="currentColor" stroke-width="2"/>
+                    <path d="M50,75 C40,70 30,75 30,85 C40,85 45,80 50,75 Z" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                    <path d="M50,80 C60,75 70,80 70,90 C60,90 55,85 50,80 Z" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                    <circle cx="50" cy="45" r="3" fill="currentColor"/>
+                </svg>
+                <span>FLORENZA</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#nosotros">Nosotros</a></li>
+                <li><a href="#colecciones">Colecciones</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+            <div class="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section id="inicio" class="hero">
+            <div class="hero-content">
+                <h1 class="split-text">Elegancia Natural</h1>
+                <p class="fade-up-text">Arreglos florales exclusivos y de lujo en el corazón de Honduras. Creamos momentos inolvidables a través de la belleza de la naturaleza.</p>
+                <div class="hero-buttons fade-up-text">
+                    <a href="#colecciones" class="btn btn-primary">Descubrir Colección</a>
+                    <a href="#contacto" class="btn btn-secondary">Contactar</a>
+                </div>
+            </div>
+            <div class="hero-image-container">
+                <div class="image-wrapper reveal-image">
+                    <img src="https://images.unsplash.com/photo-1563241527-3004b7be7221?q=80&w=800&auto=format&fit=crop" alt="Arreglo floral elegante">
+                </div>
+            </div>
+        </section>
+
+        <!-- Marquee / Ribbon -->
+        <div class="marquee-container">
+            <div class="marquee">
+                <span>FLORENZA • EXCLUSIVIDAD • ELEGANCIA • HONDURAS • DISEÑO FLORAL • LUJO • </span>
+                <span>FLORENZA • EXCLUSIVIDAD • ELEGANCIA • HONDURAS • DISEÑO FLORAL • LUJO • </span>
+            </div>
+        </div>
+
+        <!-- About Section -->
+        <section id="nosotros" class="about">
+            <div class="about-grid">
+                <div class="about-text">
+                    <h2 class="section-title">Nuestra Esencia</h2>
+                    <p>En Floristería Florenza, creemos que cada flor cuenta una historia. Seleccionamos cuidadosamente las especies más exclusivas para crear arreglos que no solo adornan un espacio, sino que transforman emociones.</p>
+                    <p>Ubicados en Honduras, somos pioneros en el diseño floral contemporáneo, combinando técnicas clásicas con una visión moderna y sofisticada.</p>
+                </div>
+                <div class="about-images">
+                    <img src="https://images.unsplash.com/photo-1600863009139-4d2be3b2aa24?q=80&w=600&auto=format&fit=crop" class="img-1 parallax-img" alt="Detalle de flor">
+                    <img src="https://images.unsplash.com/photo-1457089328109-e5d9f05f61d4?q=80&w=600&auto=format&fit=crop" class="img-2 parallax-img" alt="Bouquet premium">
+                </div>
+            </div>
+        </section>
+
+        <!-- Collections Section -->
+        <section id="colecciones" class="collections">
+            <h2 class="section-title center">Colecciones Destacadas</h2>
+            <div class="collection-grid">
+                <div class="collection-item">
+                    <div class="img-container">
+                        <img src="https://images.unsplash.com/photo-1591886960571-74d43a9d4166?q=80&w=600&auto=format&fit=crop" alt="Boda">
+                    </div>
+                    <h3>Romance Eterno</h3>
+                    <p>Rosas de exportación en presentaciones premium.</p>
+                </div>
+                <div class="collection-item">
+                    <div class="img-container">
+                        <img src="https://images.unsplash.com/photo-1519378058457-4c78a0a2f4cc?q=80&w=600&auto=format&fit=crop" alt="Eventos">
+                    </div>
+                    <h3>Eventos & Galas</h3>
+                    <p>Diseño floral corporativo y celebraciones de lujo.</p>
+                </div>
+                <div class="collection-item">
+                    <div class="img-container">
+                        <img src="https://images.unsplash.com/photo-1490750967868-88cb4ec0650c?q=80&w=600&auto=format&fit=crop" alt="Primavera">
+                    </div>
+                    <h3>Frescura Silvestre</h3>
+                    <p>Composiciones orgánicas y texturas naturales.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <div class="cta-content">
+                <h2>Eleva tus momentos</h2>
+                <p>Permítenos crear algo extraordinario para ti.</p>
+                <a href="#contacto" class="btn btn-primary">Agendar Asesoría</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer id="contacto">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="logo">
+                    <svg viewBox="0 0 100 100" class="logo-svg" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M50,15 C45,25 35,35 25,35 C35,45 40,55 50,65 C60,55 65,45 75,35 C65,35 55,25 50,15 Z" fill="none" stroke="currentColor" stroke-width="2"/>
+                        <circle cx="50" cy="45" r="3" fill="currentColor"/>
+                        <path d="M50,65 L50,90" fill="none" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    <span>FLORENZA</span>
+                </div>
+                <p>El lenguaje del lujo a través de la naturaleza.</p>
+            </div>
+            <div class="footer-info">
+                <div class="footer-col">
+                    <h4>Visítanos</h4>
+                    <p>Tegucigalpa, Honduras<br>Zona Exclusiva</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Contacto</h4>
+                    <p>hola@florenza.hn<br>+504 9999-0000</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Síguenos</h4>
+                    <div class="social-links">
+                        <a href="#">Instagram</a>
+                        <a href="#">Facebook</a>
+                        <a href="#">Pinterest</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Floristería Florenza. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
