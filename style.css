@@ -1,7 +1,7 @@
 :root {
-    --bg-color: #f1f5f1; /* Even lighter, cleaner pastel green/mint background */
+    --bg-color: #d1dfd1; /* Saturated but soft pastel green background */
     --primary-color: #4a5d4b; /* Deep sage green for contrast */
-    --secondary-color: #e0e9e1; 
+    --secondary-color: #c0cfc0; /* Darker green for alternating sections */
     --accent-color: #fdf0e9; 
     --text-dark: #1e281f; /* Near black green for maximum readability */
     --text-light: #3e4d3f; /* Darker body text */
