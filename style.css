@@ -26,16 +26,22 @@ body {
     position: relative;
 }
 
-/* 3D Canvas */
-#webgl-canvas {
+/* Floral Animated Background */
+#floral-bg {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
+    top: -5%;
+    left: -5%;
+    width: 110vw;
+    height: 110vh;
     z-index: -1;
     pointer-events: none;
-    opacity: 0.6;
+    background: linear-gradient(rgba(22, 26, 24, 0.65), rgba(22, 26, 24, 0.85)), url('bg.png') center/cover;
+    animation: floralBloom 25s ease-in-out infinite alternate;
+}
+
+@keyframes floralBloom {
+    0% { transform: scale(1); filter: brightness(1) contrast(1); }
+    100% { transform: scale(1.08); filter: brightness(1.2) contrast(1.1); }
 }
 
 /* Typography */
