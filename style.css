@@ -95,10 +95,11 @@ h1, h2, h3, h4 {
     font-weight: 500;
 }
 
-.logo-svg {
-    width: 40px;
-    height: 40px;
-    color: var(--primary-color);
+.logo-img {
+    height: 50px;
+    width: 50px;
+    object-fit: cover;
+    border-radius: 50%;
 }
 
 .nav-links {
@@ -414,8 +415,9 @@ footer {
     margin-bottom: 1rem;
 }
 
-.footer-brand .logo-svg {
-    color: var(--primary-color);
+.footer-brand .logo-img {
+    filter: none;
+    border: 2px solid var(--primary-color);
 }
 
 .footer-brand p {
