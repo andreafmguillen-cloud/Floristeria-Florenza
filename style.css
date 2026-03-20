@@ -1,10 +1,10 @@
 :root {
-    --bg-color: #e4ece3; /* Soft sage green background */
-    --primary-color: #708871; /* Sage green from the new logo */
-    --secondary-color: #d8e5d7; /* Slightly deeper green for contrast */
-    --accent-color: #fdf0e9; /* Soft peach from logo background for highlights */
-    --text-dark: #374438; /* Dark sage green for headings */
-    --text-light: #5d6d5e; /* Muted green for body text */
+    --bg-color: #f1f5f1; /* Even lighter, cleaner pastel green/mint background */
+    --primary-color: #4a5d4b; /* Deep sage green for contrast */
+    --secondary-color: #e0e9e1; 
+    --accent-color: #fdf0e9; 
+    --text-dark: #1e281f; /* Near black green for maximum readability */
+    --text-light: #3e4d3f; /* Darker body text */
     --white: #ffffff;
     
     --font-heading: 'Lora', serif;
@@ -27,17 +27,7 @@ body {
     position: relative;
 }
 
-/* Animated Vines Canvas */
-#marauder-vines {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: -2;
-    pointer-events: none;
-    opacity: 0.8;
-}
+
 
 /* Typography */
 h1, h2, h3, h4 {
