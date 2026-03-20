@@ -389,7 +389,7 @@ h1, h2, h3, h4 {
 
 /* Footer */
 footer {
-    background-color: var(--text-dark);
+    background-color: var(--bg-color);
     color: #e6dfd7;
     padding: 6rem 5% 2rem;
 }
@@ -468,7 +468,7 @@ footer {
 .footer-bottom {
     text-align: center;
     padding-top: 2rem;
-    border-top: 1px solid rgba(174, 139, 98, 0.2);
+    border-top: 1px solid rgba(216, 180, 136, 0.2); /* Use gold overlay */
     font-size: 0.9rem;
     opacity: 0.6;
 }
