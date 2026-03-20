@@ -116,9 +116,9 @@ function initCanvas() {
 window.addEventListener('resize', initCanvas);
 initCanvas();
 
-const colorGold = '#eaaeb2';
-const colorLeaf = '#b8c5b9'; 
-const colorPink = '#ffffff';
+const colorGold = '#c9d4b6'; // Soft olive-green for vines and flower core
+const colorLeaf = '#9abfa7'; // Main pastel green for leaves
+const colorPink = '#ffffff'; // White for flowers
 
 let vines = [];
 let flowers = [];
