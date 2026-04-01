@@ -245,8 +245,8 @@ i {
     width: 100%;
     max-width: 600px;
     height: auto;
-    /* Make the logo significantly darker and richer to stand out against the pastel green */
-    filter: brightness(0.4) contrast(1.1) drop-shadow(0 20px 30px rgba(0,0,0,0.08)); 
+    /* La imagen ya es nativamente oscura tras el re-render por Python */
+    filter: drop-shadow(0 20px 30px rgba(0,0,0,0.08)); 
 }
 
 /* Buttons */
