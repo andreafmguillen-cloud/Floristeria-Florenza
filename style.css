@@ -4,14 +4,14 @@
 
 :root {
     /* Color Palette */
-    --bg-light: #F9F7F3; /* Warm pearl */
-    --bg-dark: #1C2720; /* Deep forest green */
-    --sage: #A9BCA6; /* Elegant soft sage */
-    --blush: #EADDD7; /* Dusty pinkish blush */
+    --bg-light: #D4BFA7; /* Warm earthy sand, absolutely zero white */
+    --bg-dark: #2E251E; /* Deep warm espresso brown */
+    --sage: #938F75; /* Warm olive */
+    --blush: #BC7B5B; /* Warm terracotta orange/brown */
     
-    --text-main: #242E26; /* Almost black green */
-    --text-muted: #5B6B5D;
-    --white: #FFFFFF;
+    --text-main: #2B211A; /* Very dark warm brown text */
+    --text-muted: #544A42;
+    --white: #EFE4D6; /* Off-white for accents */
     
     /* Fonts */
     --font-heading: 'Cormorant Garamond', serif;
@@ -99,10 +99,10 @@ i {
 }
 
 .navbar.scrolled {
-    background: rgba(249, 247, 243, 0.95);
+    background: rgba(212, 191, 167, 0.95);
     backdrop-filter: blur(15px);
     padding: 1rem 5%;
-    border-bottom: 1px solid rgba(28, 39, 32, 0.05);
+    border-bottom: 1px solid rgba(46, 37, 30, 0.1);
 }
 
 .nav-links {
@@ -110,13 +110,40 @@ i {
     gap: 3vw;
 }
 
+.nav-logo a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    gap: 15px;
+}
+
+.nav-brand-text {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    color: var(--text-main);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    display: none; /* Hide by default on smaller screens if needed, but let's show it */
+}
+
+@media (min-width: 768px) {
+    .nav-brand-text {
+        display: block;
+    }
+}
+
 .nav-logo img {
-    height: 90px;
+    height: 75px;
     transition: height 0.4s ease;
 }
 
 .navbar.scrolled .nav-logo img {
-    height: 60px;
+    height: 55px;
+}
+
+.navbar.scrolled .nav-brand-text {
+    font-size: 1.2rem;
 }
 
 .nav-item {
@@ -176,7 +203,7 @@ i {
 .hero-overlay {
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
-    background: linear-gradient(90deg, var(--bg-light) 0%, rgba(249, 247, 243, 0.6) 40%, transparent 100%);
+    background: linear-gradient(90deg, var(--bg-light) 0%, rgba(212, 191, 167, 0.7) 40%, transparent 100%);
 }
 
 .hero-content {
@@ -563,7 +590,7 @@ i {
     
     .hero-title { font-size: 4.5rem; }
     .hero-title i { font-size: 5rem; }
-    .hero-overlay { background: linear-gradient(0deg, var(--bg-light) 0%, rgba(249, 247, 243, 0.8) 100%); }
+    .hero-overlay { background: linear-gradient(0deg, var(--bg-light) 0%, rgba(212, 191, 167, 0.9) 100%); }
     
     .about-container { grid-template-columns: 1fr; }
     .about-image-col { height: 600px; order: 2; margin-top: 3rem; }
