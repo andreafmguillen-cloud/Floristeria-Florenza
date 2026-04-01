@@ -1,106 +1,161 @@
-// Navigation scroll effect
-window.addEventListener('scroll', () => {
+document.addEventListener("DOMContentLoaded", () => {
+    
+    // Register ScrollTrigger
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Initial loader animation
+    const tlLoader = gsap.timeline();
+    
+    tlLoader.to(".loader-logo", {
+        opacity: 1,
+        y: -20,
+        duration: 1,
+        ease: "power3.out"
+    })
+    .to(".loader-logo", {
+        opacity: 0,
+        y: -40,
+        duration: 0.8,
+        delay: 0.5,
+        ease: "power3.in"
+    })
+    .to(".loader", {
+        height: 0,
+        duration: 1,
+        ease: "power4.inOut"
+    }, "-=0.2")
+    .from(".hero-subtitle", {
+        y: 20,
+        opacity: 0,
+        duration: 0.8,
+        ease: "power3.out"
+    }, "-=0.2")
+    .from(".hero-title", {
+        y: 40,
+        opacity: 0,
+        duration: 1,
+        ease: "power3.out"
+    }, "-=0.6")
+    .from(".hero-action", {
+        y: 20,
+        opacity: 0,
+        duration: 0.8,
+        ease: "power3.out"
+    }, "-=0.6");
+
+    // Navbar scroll effect
     const navbar = document.querySelector('.navbar');
-    if (window.scrollY > 50) {
-        navbar.classList.add('scrolled');
-    } else {
-        navbar.classList.remove('scrolled');
-    }
-});
-
-// GSAP Animations
-gsap.registerPlugin(ScrollTrigger);
-
-// Hero Animations
-const tl = gsap.timeline();
-
-// Split text animation for Hero
-const title = document.querySelector('.split-text');
-const text = title.innerText;
-title.innerHTML = '';
-text.split(' ').forEach((word, index, arr) => {
-    const wordSpan = document.createElement('span');
-    wordSpan.style.display = 'inline-block';
-    wordSpan.style.whiteSpace = 'nowrap';
-    word.split('').forEach(char => {
-        const charSpan = document.createElement('span');
-        charSpan.innerText = char;
-        charSpan.className = 'char';
-        charSpan.style.display = 'inline-block';
-        wordSpan.appendChild(charSpan);
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.add('scrolled'); // Force scrolled on load to prevent jumping? Actually let's just add/remove
+            if(window.scrollY < 10) navbar.classList.remove('scrolled');
+        }
     });
-    title.appendChild(wordSpan);
-    if (index < arr.length - 1) {
-        const space = document.createElement('span');
-        space.innerText = '\u00A0';
-        space.style.display = 'inline-block';
-        title.appendChild(space);
+
+    // Mobile Menu Toggle
+    const menuToggle = document.querySelector('.menu-toggle');
+    if(menuToggle) {
+        menuToggle.addEventListener('click', () => {
+            // Placeholder for full screen mobile menu
+            alert("Menú móvil en construcción. Por favor deslice para navegar.");
+        });
     }
-});
 
-tl.fromTo('.reveal-image',
-    { clipPath: 'polygon(0 100%, 100% 100%, 100% 100%, 0 100%)', opacity: 0 },
-    { clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)', opacity: 1, duration: 1.2, ease: 'power3.out', delay: 0.2 }
-)
-.fromTo('.split-text .char', 
-    { y: 100, opacity: 0 },
-    { y: 0, opacity: 1, duration: 0.8, stagger: 0.03, ease: 'power4.out' },
-    '-=0.6'
-)
-.fromTo('.fade-up-text',
-    { y: 30, opacity: 0 },
-    { y: 0, opacity: 1, duration: 1, stagger: 0.2, ease: 'power3.out' },
-    '-=0.4'
-);
-
-// Scroll Animations
-gsap.utils.toArray('.section-title').forEach(title => {
-    gsap.fromTo(title,
-        { y: 50, opacity: 0 },
-        {
-            y: 0, opacity: 1, duration: 1,
+    // Parallax Effects on Images
+    gsap.utils.toArray('.img-parallax').forEach(img => {
+        gsap.to(img, {
+            yPercent: 15,
+            ease: "none",
             scrollTrigger: {
-                trigger: title,
-                start: 'top 80%',
+                trigger: img.parentElement,
+                start: "top bottom",
+                end: "bottom top",
+                scrub: true
             }
-        }
-    );
-});
+        });
+    });
 
-gsap.utils.toArray('.collection-item').forEach((item, i) => {
-    gsap.fromTo(item,
-        { y: 100, opacity: 0 },
-        {
-            y: 0, opacity: 1,
+    gsap.utils.toArray('.img-parallax-reverse').forEach(img => {
+        gsap.to(img, {
+            yPercent: -15,
+            ease: "none",
+            scrollTrigger: {
+                trigger: img.parentElement,
+                start: "top bottom",
+                end: "bottom top",
+                scrub: true
+            }
+        });
+    });
+
+    // Parallax CTA Background
+    gsap.to('.cta-bg', {
+        yPercent: 30,
+        ease: "none",
+        scrollTrigger: {
+            trigger: ".cta-parallax",
+            start: "top bottom",
+            end: "bottom top",
+            scrub: true
+        }
+    });
+
+    // Reveal Animations
+    const fadeUps = document.querySelectorAll('.gs-fade-up');
+    fadeUps.forEach(element => {
+        gsap.from(element, {
+            y: 50,
+            opacity: 0,
             duration: 1,
-            delay: i * 0.2,
+            ease: "power3.out",
             scrollTrigger: {
-                trigger: '.collection-grid',
-                start: 'top 75%',
+                trigger: element,
+                start: "top 85%",
+                toggleActions: "play none none none"
             }
-        }
-    );
-});
+        });
+    });
 
-// Parallax for About Images
-gsap.to('.img-1', {
-    y: -50,
-    ease: "none",
-    scrollTrigger: {
-        trigger: '.about',
-        start: 'top bottom',
-        end: 'bottom top',
-        scrub: true
-    }
-});
+    // Zoom Cards
+    const zoomCards = document.querySelectorAll('.gs-zoom');
+    zoomCards.forEach((card, i) => {
+        gsap.from(card, {
+            y: 50,
+            scale: 0.95,
+            opacity: 0,
+            duration: 1,
+            delay: card.classList.contains('gs-delay-1') ? 0.2 : (card.classList.contains('gs-delay-2') ? 0.4 : 0),
+            ease: "power3.out",
+            scrollTrigger: {
+                trigger: ".collections-grid",
+                start: "top 80%",
+            }
+        });
+    });
 
-gsap.to('.img-2', {
-    y: 50,
-    ease: "none",
-    scrollTrigger: {
-        trigger: '.about',
-        start: 'top bottom',
-        end: 'bottom top',
-        scrub: true
-    }
+    const slideUps = document.querySelectorAll('.gs-slide-up');
+    slideUps.forEach(element => {
+        gsap.from(element, {
+            y: 40,
+            opacity: 0,
+            duration: 1,
+            ease: "power3.out",
+            scrollTrigger: {
+                trigger: element,
+                start: "top 80%"
+            }
+        });
+    });
+    
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
 });
