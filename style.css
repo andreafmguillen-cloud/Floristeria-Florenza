@@ -524,8 +524,8 @@ i {
 
 .footer-grid {
     display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 8vw;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 4vw;
     max-width: 1400px;
     margin: 0 auto;
     border-bottom: 1px solid rgba(255,255,255,0.1);
@@ -533,21 +533,15 @@ i {
 }
 
 .footer-logo {
-    height: 180px;
+    height: 150px;
     filter: brightness(0) invert(1);
-    margin-bottom: 2rem;
+    margin-bottom: 0rem; /* No text, so no margin needed */
 }
 
-.brand-desc {
-    color: var(--sage);
-    max-width: 300px;
-    font-size: 1.1rem;
-}
+/* brand-desc removed as requested */
 
 .footer-links {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 4rem;
+    display: contents; /* Makes children (footer-col) behave as children of footer-grid */
 }
 
 .footer-col h4 {
