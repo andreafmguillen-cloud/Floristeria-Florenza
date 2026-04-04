@@ -56,12 +56,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Mobile Menu Toggle
     const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    const navButtons = document.querySelectorAll('.nav-item');
+
     if(menuToggle) {
         menuToggle.addEventListener('click', () => {
-            // Placeholder for full screen mobile menu
-            alert("Menú móvil en construcción. Por favor deslice para navegar.");
+            menuToggle.classList.toggle('active');
+            navLinks.classList.toggle('active');
         });
     }
+
+    // Close menu when clicking a link
+    navButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            menuToggle.classList.remove('active');
+            navLinks.classList.remove('active');
+        });
+    });
 
     // Parallax Effects on Images
     gsap.utils.toArray('.img-parallax').forEach(img => {
