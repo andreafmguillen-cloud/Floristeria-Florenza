@@ -106,13 +106,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const fadeUps = document.querySelectorAll('.gs-fade-up');
     fadeUps.forEach(element => {
         gsap.from(element, {
-            y: 50,
+            y: 30,
             opacity: 0,
-            duration: 1,
+            duration: 0.4,
             ease: "power3.out",
             scrollTrigger: {
                 trigger: element,
-                start: "top 85%",
+                start: "top 90%",
                 toggleActions: "play none none none"
             }
         });
