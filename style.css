@@ -301,20 +301,19 @@ i {
 }
 
 .marquee-track {
-    display: flex;
-    width: max-content;
-    animation: scroll 40s linear infinite;
+    display: inline-block;
+    animation: scroll 30s linear infinite;
     font-size: 0.9rem;
     letter-spacing: 0.2em;
 }
 
 .marquee-track span {
-    padding-right: 20px;
+    padding-right: 50px;
 }
 
 @keyframes scroll {
     0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
+    100% { transform: translateX(-33.33%); }
 }
 
 /* About Section */
