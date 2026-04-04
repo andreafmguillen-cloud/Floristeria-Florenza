@@ -601,6 +601,16 @@ i {
     font-size: 0.9rem;
 }
 
+.credit-link {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.credit-link:hover {
+    color: var(--sage);
+}
+
     /* Responsive */
 @media (max-width: 1024px) {
     .nav-links { display: none; }
