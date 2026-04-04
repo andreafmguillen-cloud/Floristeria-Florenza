@@ -631,8 +631,8 @@ i {
     position: fixed;
     top: 0; width: 100%;
     padding: 1.5rem 5%;
-    display: flex;
-    justify-content: center; /* Center the links container */
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
     align-items: center;
     z-index: 1000;
     transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
@@ -645,43 +645,45 @@ i {
     border-bottom: 1px solid rgba(28, 39, 32, 0.05);
 }
 
-.nav-links {
+.left-links {
+    justify-self: start;
     display: flex;
-    align-items: center;
-    gap: 4.5rem;
+    gap: 3vw;
+}
+
+.right-links {
+    justify-self: end;
+    display: flex;
+    gap: 3vw;
 }
 
 .nav-logo {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1010;
+    justify-self: center;
+    z-index: 10;
     text-align: center;
-    pointer-events: none; /* Logo is fixed center, doesn't interfere */
 }
 
 .nav-logo a {
-    pointer-events: auto; /* Re-enable pointer for the link only */
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 5px;
+    justify-content: center;
     text-decoration: none;
+    gap: 5px;
 }
 
 .nav-logo img {
-    height: 65px;
+    height: 60px;
     transition: height 0.4s ease;
 }
 
 .navbar.scrolled .nav-logo img {
-    height: 48px;
+    height: 45px;
 }
 
 .nav-brand-text {
     font-family: var(--font-heading);
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     color: var(--text-main);
     letter-spacing: 0.15em;
     text-transform: uppercase;
@@ -690,13 +692,6 @@ i {
 
 .navbar.scrolled .nav-brand-text {
     font-size: 1rem;
-}
-
-/* Split Space logic for desktop links */
-@media (min-width: 901px) {
-    .nav-links .nav-item:nth-child(2) {
-        margin-right: 220px; /* Space for the absolute logo */
-    }
 }
 
 .nav-item {
@@ -722,14 +717,16 @@ i {
     width: 100%;
 }
 
+.mobile-nav {
+    display: none; /* Hide by default */
+}
+
 .menu-toggle {
     display: none;
     cursor: pointer;
     background: none;
     border: none;
     padding: 0;
-    position: absolute;
-    right: 5%;
 }
 
 .menu-toggle .line {
@@ -740,47 +737,67 @@ i {
     transition: 0.3s ease;
 }
 
-/* Tablets & Small Laptops (1024px and below) */
-@media (max-width: 1024px) {
-    :root {
-        --section-pad: 5rem 5%;
+/* Breakpoints */
+
+/* Desktop & Laptops (prevents overlap on smaller desktop screens) */
+@media (max-width: 1150px) {
+    .nav-brand-text {
+        font-size: 0.85rem;
     }
-    .main-heading { font-size: 2.8rem; }
+    .nav-logo img {
+        height: 50px;
+    }
+    .navbar {
+        padding: 1.5rem 3%;
+    }
 }
 
-/* Mobile Breakpoint (900px and below) */
-@media (max-width: 900px) {
+/* Mobile & Tablet Switch (900px and below) */
+@media (max-width: 950px) {
+    .left-links, .right-links {
+        display: none; /* Hide desktop specific links */
+    }
+
     .navbar {
-        justify-content: flex-start; /* Push toggle to the right */
+        display: flex;
+        justify-content: space-between;
+        padding: 1.5rem 5%;
     }
 
     .nav-logo {
-        left: 5%;
-        transform: translateY(-50%); /* Only center vertically */
+        flex: 1;
+        text-align: left;
+        justify-self: start;
     }
 
-    .nav-links {
+    .nav-logo a {
+        align-items: flex-start;
+    }
+
+    .mobile-nav {
         position: fixed;
         top: 0;
         right: -100%;
         width: 100%;
         height: 100vh;
         background-color: var(--bg-light);
+        display: flex;
         flex-direction: column;
         justify-content: center;
+        align-items: center;
         gap: 3rem;
         transition: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-        z-index: 1005;
+        z-index: 1001;
         box-shadow: -10px 0 30px rgba(0,0,0,0.05);
     }
 
-    .nav-links.active {
+    .mobile-nav.active {
         right: 0;
     }
 
     .menu-toggle {
         display: block;
-        z-index: 1006;
+        z-index: 1002;
     }
 
     .menu-toggle.active .line:nth-child(1) {
@@ -791,8 +808,13 @@ i {
         transform: translateY(-7px) rotate(-45deg);
     }
 
-    .hero-title { font-size: 3.5rem; }
-    .hero-title i { font-size: 4rem; }
+    :root {
+        --section-pad: 5rem 5%;
+    }
+
+    .main-heading { font-size: 2.8rem; }
+    .hero-title { font-size: 3rem; }
+    .hero-title i { font-size: 3.5rem; }
     
     .about-container { grid-template-columns: 1fr; gap: 3rem; }
     .about-image-col { height: 400px; }
