@@ -436,6 +436,7 @@ i {
     overflow: hidden;
     margin-bottom: 2rem;
     border-radius: 200px 200px 0 0;
+    background-color: var(--white);
 }
 
 .col-image img {
@@ -469,8 +470,10 @@ i {
 }
 
 .col-info p {
-    color: var(--text-muted);
-    font-size: 1.1rem;
+    color: var(--sage);
+    font-style: italic;
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
 }
 
 /* Parallax CTA */
