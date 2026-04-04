@@ -469,10 +469,8 @@ i {
 }
 
 .col-info p {
-    color: var(--sage);
-    font-style: italic;
-    font-family: var(--font-heading);
-    font-size: 1.2rem;
+    color: var(--text-muted);
+    font-size: 1.1rem;
 }
 
 /* Parallax CTA */
