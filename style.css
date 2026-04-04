@@ -538,7 +538,7 @@ i {
 .footer {
     background-color: var(--bg-dark);
     color: var(--bg-light);
-    padding: 8rem 5% 2rem;
+    padding: 4rem 5% 2rem; /* Reduced from 8rem to 4rem */
 }
 
 .footer-grid {
