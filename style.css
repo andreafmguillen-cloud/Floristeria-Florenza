@@ -536,6 +536,7 @@ i {
 
 .brand-desc {
     color: var(--sage);
+    font-family: var(--font-heading);
     max-width: 300px;
     font-size: 1.1rem;
 }
