@@ -293,7 +293,7 @@ i {
 .marquee-section {
     padding: 2rem 0;
     background-color: var(--bg-dark);
-    color: var(--sage);
+    color: #9CB099; /* Slightly lighter sage for marquee */
     overflow: hidden;
     white-space: nowrap;
     border-top: 1px solid rgba(255,255,255,0.1);
